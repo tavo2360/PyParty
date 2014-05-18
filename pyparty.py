@@ -44,4 +44,106 @@ def Button(screen, x, y, width, text, buttonColor, textColor):	   #creats button
 	screen.blit(font.render(text, True, textColor), (x+20, y+7))
 	pygame.display.update()
 	return [rect, text]
+	
+# ==========================================================================
+# Function to create board 
+# ==========================================================================
+
+def boardsquares(x,y,width,squarecolor,interval,startcolor,orientation):
+	square=pygame.draw.rect(screen,
+					 squarecolor,
+					 (x,y,width,width),0)
+	square=pygame.draw.rect(screen,
+					 black,
+					 (x,y,width,width),2)
+	if orientation=="horizontal":
+		if startcolor==blue:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+width,y,width,green,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+2*width,y,width,red,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+3*width,y,width,blue,interval,startcolor,orientation)
+		if startcolor==green:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+width,y,width,red,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+2*width,y,width,blue,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+3*width,y,width,green,interval,startcolor,orientation)
+		if startcolor==red:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+width,y,width,blue,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+2*width,y,width,green,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x+3*width,y,width,red,interval,startcolor,orientation)
+	if orientation=="vertical":
+		if startcolor==blue:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+width,width,green,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+2*width,width,red,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+3*width,width,blue,interval,startcolor,orientation)
+		if startcolor==green:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+width,width,red,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+2*width,width,blue,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+3*width,width,green,interval,startcolor,orientation)
+		if startcolor==red:
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+width,width,blue,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+2*width,width,green,interval,startcolor,orientation)
+			if interval > 0:
+				interval -= 1
+				boardsquares(x,y+3*width,width,red,interval,startcolor,orientation)
+
+# ==========================================================================
+# Function to create board window
+# ==========================================================================
+
+def boardwindow():
+	global screen
+	done=1
+	screen = window(749, 468) 
+	pygame.display.set_caption("PyParty Board")
+	screen.fill(black)
+	boardsquares(150,20,50,blue,6,blue,"horizontal")
+	boardsquares(150,370,50,blue,6,blue,"horizontal")
+	boardsquares(500,20,50,green,7,green,"vertical")
+	pygame.display.flip()
+	while done:
+		for event in pygame.event.get(): # User did something
+			if event.type == pygame.QUIT: # If user clicked close
+				pygame.quit();sys.exit();
+	
+
+boardwindow()
+
+
+
+
+
+
 
