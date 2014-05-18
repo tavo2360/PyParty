@@ -1,3 +1,7 @@
+#mae esto es una prueba para ver si esto sirve
+
+
+
 #draw cube
 import sys, math, pygame
 yellow=(255,238,0)									  
