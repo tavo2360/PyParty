@@ -1,7 +1,7 @@
 import sys
 import pygame,math,cmath
 from pygame.locals import *
-fractal_level = 4
+
 # ==========================================================================
 # Color's definition
 # ==========================================================================
