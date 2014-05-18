@@ -2,30 +2,44 @@ import sys
 import pygame,math,cmath
 from pygame.locals import *
 salir=False
-
+#=========*Fuction to create the presentation windons*==================
+#=======================================================================
 def Windons():
-  salir=False
+  salirI=False
   pygame.init()
   screen = pygame.display.set_mode((1024,600))
-  background = pygame.image.load("fondo.jpg").convert()
-  pygame.mixer.music.load("presentation.mp3")
-  pygame.display.set_caption("PyPARTY")
-  #pygame.display.set_icon("icon.jpg")  
+  background = pygame.image.load("fondo1.jpg").convert()
+  pygame.mixer.music.load("song1.mp3")
+  pygame.display.set_caption("PyPARTY")  
   screen.blit(background,(0,0))
   imagen1=pygame.image.load("gif.png")
   screen.blit(imagen1,(300,500))
   pygame.display.update()
   pygame.mixer.music.play(2)
-  while salir!= True:
+  while salirI!= True:
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
-              salir=True
+              salirI=True
           if event.type == pygame.KEYDOWN:
-                 print("Hola")
-               
-#            
-  pygame.quit()          
-  
+                 menu()
+                 salirI=True
+  pygame.quit()                
+def menu():
+  salirII=False
+  pygame.init()
+  screen = pygame.display.set_mode((1024,600))
+  background = pygame.image.load("fondo2.jpg").convert()
+  pygame.mixer.music.load("song2.mp3")
+  pygame.display.set_caption("PyPARTY")  
+  screen.blit(background,(0,0))
+  pygame.display.update()
+  pygame.mixer.music.play(2)
+  while salirII!= True:
+      for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+              salirII=True
+
+  pygame.quit()  
 Windons()
 
 
