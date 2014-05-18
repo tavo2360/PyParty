@@ -134,6 +134,8 @@ class Simulation:
 			#speed for the rotating cube
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
                 self.angle += 0
+            if event.type == pygame.MOUSEBUTTONUP and event.button == LEFT:
+                self.angle += 0
             else:
                 self.angle += 9
  
