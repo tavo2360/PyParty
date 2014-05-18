@@ -1,9 +1,10 @@
 import sys
 import pygame,math,cmath
 from pygame.locals import *
-flag=True
+salir=False
 
 def Windons():
+  salir=False
   pygame.init()
   screen = pygame.display.set_mode((1024,600))
   background = pygame.image.load("background.jpg").convert()
@@ -11,18 +12,14 @@ def Windons():
   pygame.display.set_caption("PyPARTY")
   screen.blit(background,(0,0))
   pygame.display.update()
-  return screen
   pygame.mixer.music.play(2)
-  while (flag):
+  while salir!= True:
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
-             pygame.quit(); sys.exit();
-
+            salir=True
+            
+  pygame.quit()
 Windons()
-
-
-
-
 
 
 
