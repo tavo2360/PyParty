@@ -43,8 +43,6 @@ def menu():
 Windons()
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -53,7 +51,6 @@ Windons()
 
 
 
->>>>>>> c6070d7a54de6ae455013ed3fa2fd0aa1880f20d
 # ==========================================================================
 # Color's definition
 # ==========================================================================
@@ -72,7 +69,6 @@ lightGreen=(151,190,13)
 green=(0,145,54)
 white=(255,255,255)
 black=(0,0,0)
-<<<<<<< HEAD
 
 
 # ==========================================================================			
@@ -81,9 +77,7 @@ black=(0,0,0)
 def window(x, y):									  # Creates window where program runs
 	pygame.init()									  
 	screen = pygame.display.set_mode((x,y))
-	background = pygame.image.load("background.jpg").convert()		#opens background image
-	pygame.display.set_caption("Figure Maker ADVANCED 2")
-	screen.blit(background,(0,0))
+	screen.fill(black)
 	pygame.display.update()	   
 	return screen
 	
@@ -220,30 +214,5 @@ boardwindow()
 
 
 
-=======
-##
-### ==========================================================================			
-### Function to create a window
-### ==========================================================================
-##def window(x, y):									  # Creates window where program runs
-##	pygame.init()									  
-##	screen = pygame.display.set_mode((x,y))
-##	background = pygame.image.load("background.jpg").convert()		#opens background image
-##	pygame.display.set_caption("Figure Maker ADVANCED 2")
-##	screen.blit(background,(0,0))
-##	pygame.display.update()	   
-##	return screen
-##	
-##
-### ==========================================================================
-### Function to create buttons
-### ==========================================================================
-##def Button(screen, x, y, width, text, buttonColor, textColor):	   #creats buttons
-##	font=pygame.font.Font(None,24)								   #choses font size
-##	rect=pygame.draw.rect(screen, black, (x,y,width,30), 1)		   #button shape
-##	screen.fill(buttonColor, rect)
-##	screen.blit(font.render(text, True, textColor), (x+20, y+7))
-##	pygame.display.update()
-##	return [rect, text]
->>>>>>> c6070d7a54de6ae455013ed3fa2fd0aa1880f20d
+
 
