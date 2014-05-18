@@ -1,26 +1,45 @@
 import sys
 import pygame,math,cmath
 from pygame.locals import *
-flag=True
+salir=False
 
 def Windons():
+  salir=False
   pygame.init()
   screen = pygame.display.set_mode((1024,600))
-  background = pygame.image.load("background.jpg").convert()
+  background = pygame.image.load("fondo.jpg").convert()
   pygame.mixer.music.load("presentation.mp3")
   pygame.display.set_caption("PyPARTY")
+  #pygame.display.set_icon("icon.jpg")  
   screen.blit(background,(0,0))
+  imagen1=pygame.image.load("gif.png")
+  screen.blit(imagen1,(300,500))
   pygame.display.update()
-  return screen
   pygame.mixer.music.play(2)
-  while (flag):
+  while salir!= True:
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
-             pygame.quit(); sys.exit();
-
+              salir=True
+          if event.type == pygame.KEYDOWN:
+                 print("Hola")
+               
+#            
+  pygame.quit()          
+  
 Windons()
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> c6070d7a54de6ae455013ed3fa2fd0aa1880f20d
 # ==========================================================================
 # Color's definition
 # ==========================================================================
@@ -39,6 +58,7 @@ lightGreen=(151,190,13)
 green=(0,145,54)
 white=(255,255,255)
 black=(0,0,0)
+<<<<<<< HEAD
 
 
 # ==========================================================================			
@@ -186,4 +206,30 @@ boardwindow()
 
 
 
+=======
+##
+### ==========================================================================			
+### Function to create a window
+### ==========================================================================
+##def window(x, y):									  # Creates window where program runs
+##	pygame.init()									  
+##	screen = pygame.display.set_mode((x,y))
+##	background = pygame.image.load("background.jpg").convert()		#opens background image
+##	pygame.display.set_caption("Figure Maker ADVANCED 2")
+##	screen.blit(background,(0,0))
+##	pygame.display.update()	   
+##	return screen
+##	
+##
+### ==========================================================================
+### Function to create buttons
+### ==========================================================================
+##def Button(screen, x, y, width, text, buttonColor, textColor):	   #creats buttons
+##	font=pygame.font.Font(None,24)								   #choses font size
+##	rect=pygame.draw.rect(screen, black, (x,y,width,30), 1)		   #button shape
+##	screen.fill(buttonColor, rect)
+##	screen.blit(font.render(text, True, textColor), (x+20, y+7))
+##	pygame.display.update()
+##	return [rect, text]
+>>>>>>> c6070d7a54de6ae455013ed3fa2fd0aa1880f20d
 
