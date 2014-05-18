@@ -1,4 +1,3 @@
-##Wilson
 import sys
 import pygame,math,cmath
 from pygame.locals import *
