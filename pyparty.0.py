@@ -3,13 +3,32 @@ import pygame,math,cmath
 from pygame.locals import *
 salir=False
 
+# ==========================================================================
+# Color's definition
+# ==========================================================================
 
-#=======*Class that creates an invisible rectangle over the mouse*=======
+yellow=(255,238,0)									  
+blue=(0,107,179)
+darkBlue=(24,41,131)
+lightBlue=(0,157,226)
+fuchsia=(255,0,128)
+purple=(147,17,126)
+orange=(255,153,51)
+lightRed=(227,0,79)
+red=(227,0,35)
+pink=(225,0,122)
+lightGreen=(151,190,13)
+green=(0,145,54)
+white=(255,255,255)
+black=(0,0,0)
+
+
+#=======*Class that creates an invisible rectangle over the mouse*======
 #=======================================================================
 class Mouse(pygame.Rect):
 	def __init__(self):						#Makes an invisible rectangle that follows the cursor
 		pygame.Rect.__init__(self,0,0,1,1)
-	def pos(update):						#Gets the cursor position
+	def pos(self):						#Gets the cursor position
 		(self.left, self.top) = pygame.mouse.get_pos()
 
 #========================*Class for buttons*============================
@@ -36,13 +55,13 @@ def Windons():
 	pygame.init()
 	screen = pygame.display.set_mode((1024,600))
 	background = pygame.image.load("fondo1.jpg").convert()
+	pygame.display.set_caption("PyPARTY")
 	pygame.mixer.music.load("song1.mp3")
-	pygame.display.set_caption("PyPARTY")  
 	screen.blit(background,(0,0))
 	imagen1=pygame.image.load("gif.png")
 	screen.blit(imagen1,(300,500))
-	pygame.display.update()
 	pygame.mixer.music.play(2)
+	pygame.display.update()
   
 	while salirI!= True:
 		for event in pygame.event.get():
@@ -51,7 +70,9 @@ def Windons():
 			if event.type == pygame.KEYDOWN:
 				menu()
 	pygame.quit()
-  
+
+#================*Fuction to create the menu windons*===================
+#=======================================================================
 def menu():
 	join0 = pygame.image.load("join0.png")				#Load pictures for buttons
 	join1 = pygame.image.load("join1.png")
@@ -66,54 +87,56 @@ def menu():
 	bPlay = Buttons(play0, play1, 759,403)
 	bNewGame = Buttons(newgame0, newgame1, 96, 403)
 
+	lenghtW=0											#Variables for text
+	texts = ''
+	x=178
+	screen=pygame.display.set_mode([1024,600])
+	text=pygame.image.load("text.png")
+	
+
 	salirII=False
 	pygame.init()
 	screen = pygame.display.set_mode((1024,600))
 	background = pygame.image.load("fondo2.jpg").convert()
+	pygame.display.set_caption("PyPARTY")
 	pygame.mixer.music.load("song2.mp3")
-	pygame.display.set_caption("PyPARTY")  
 	screen.blit(background,(0,0))
-	pygame.display.update()
+	screen.blit(text, (23,76))
 	pygame.mixer.music.play(2)
+	pygame.display.update()
 
 
 	while salirII!= True:
 		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				salirII=True
-
-		bJoin.update(screen, mouse1)
-		bNewGame.update(screen, mouse1)
-		bPlay.update(screen, mouse1)
+			if event.type == pygame.QUIT:							#Event to exit
+				return pygame.quit()
+			elif event.type==pygame.KEYDOWN:											#Events for writing
+				if event.key<=122 and event.key>=97 or event.key<=57 and event.key>=48:
+					texts=texts+chr(event.key)
+					lenghtW+=15
+					x=x+15
+					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
+					label=myfont.render(chr(event.key),1,black)
+					screen.blit(label,(x,80))
+					
+				elif event.key == pygame.K_BACKSPACE:
+					texts=texts[:-1]
+					lenghtW-=15
+					x=x-15
+					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
+					label=myfont.render(texts,1,black)
+					screen.blit(background, (0,0))
+					screen.blit(text, (23,76))
+					screen.blit(label,(178, 80))
+		bJoin.update(screen, cursor1)
+		bNewGame.update(screen, cursor1)
+		bPlay.update(screen, cursor1)
 		cursor1.pos()
-		pygame.dispay.update()
+		pygame.display.update()
 
-	pygame.quit()
 Windons()
 
 
-
-
-
-
-# ==========================================================================
-# Color's definition
-# ==========================================================================
-
-yellow=(255,238,0)									  
-blue=(0,107,179)
-darkBlue=(24,41,131)
-lightBlue=(0,157,226)
-fuchsia=(255,0,128)
-purple=(147,17,126)
-orange=(255,153,51)
-lightRed=(227,0,79)
-red=(227,0,35)
-pink=(225,0,122)
-lightGreen=(151,190,13)
-green=(0,145,54)
-white=(255,255,255)
-black=(0,0,0)
 
 
 # ==========================================================================			
@@ -126,17 +149,6 @@ def window(x, y):									  # Creates window where program runs
 	pygame.display.update()	   
 	return screen
 
-
-# ==========================================================================
-# Function to create buttons
-# ==========================================================================
-def Button(screen, x, y, width, text, buttonColor, textColor):	   #creats buttons
-	font=pygame.font.Font(None,24)								   #choses font size
-	rect=pygame.draw.rect(screen, black, (x,y,width,30), 1)		   #button shape
-	screen.fill(buttonColor, rect)
-	screen.blit(font.render(text, True, textColor), (x+20, y+7))
-	pygame.display.update()
-	return [rect, text]
 
 # ==========================================================================
 # Function to create board 
