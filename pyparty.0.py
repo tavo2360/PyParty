@@ -22,6 +22,16 @@ green=(0,145,54)
 white=(255,255,255)
 black=(0,0,0)
 
+# ==========================================================================			
+# Function to create a window
+# ==========================================================================
+def window(x, y):									  # Creates window where program runs
+	pygame.init()									  
+	screen = pygame.display.set_mode((x,y))
+	screen.fill(black)
+	pygame.display.update()	   
+	return screen
+
 
 #=======*Class that creates an invisible rectangle over the mouse*======
 #=======================================================================
@@ -47,107 +57,6 @@ class Buttons(pygame.sprite.Sprite):
 		else:
 			self.imagenAct=self.imagen0
 		screen.blit(self.imagenAct, self.rect)
-                
-#=========*Fuction to create the presentation windons*==================
-#=======================================================================
-def Windons():
-	salirI=False
-	pygame.init()
-	screen = pygame.display.set_mode((1024,600))
-	background = pygame.image.load("fondo1.jpg").convert()
-	pygame.display.set_caption("PyPARTY")
-	pygame.mixer.music.load("song1.mp3")
-	screen.blit(background,(0,0))
-	imagen1=pygame.image.load("gif.png")
-	screen.blit(imagen1,(300,500))
-	pygame.mixer.music.play(2)
-	pygame.display.update()
-  
-	while salirI!= True:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				salirI=True
-			if event.type == pygame.KEYDOWN:
-				menu()
-	pygame.quit()
-
-#================*Fuction to create the menu windons*===================
-#=======================================================================
-def menu():
-	join0 = pygame.image.load("join0.png")				#Load pictures for buttons
-	join1 = pygame.image.load("join1.png")
-	newgame0 = pygame.image.load("new game0.png")
-	newgame1 = pygame.image.load("new game1.png")
-	play0 = pygame.image.load("play0.png")
-	play1 =  pygame.image.load("play1.png")
-	
-	cursor1=Mouse()										#Make a rectangle over the mouse
-	
-	bJoin = Buttons(join0, join1, 454, 403)				#Make the buttons
-	bPlay = Buttons(play0, play1, 759,403)
-	bNewGame = Buttons(newgame0, newgame1, 96, 403)
-
-	lenghtW=0											#Variables for text
-	texts = ''
-	x=178
-	screen=pygame.display.set_mode([1024,600])
-	text=pygame.image.load("text.png")
-	
-
-	salirII=False
-	pygame.init()
-	screen = pygame.display.set_mode((1024,600))
-	background = pygame.image.load("fondo2.jpg").convert()
-	pygame.display.set_caption("PyPARTY")
-	pygame.mixer.music.load("song2.mp3")
-	screen.blit(background,(0,0))
-	screen.blit(text, (23,76))
-	pygame.mixer.music.play(2)
-	pygame.display.update()
-
-
-	while salirII!= True:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:							#Event to exit
-				return pygame.quit()
-			elif event.type==pygame.KEYDOWN:											#Events for writing
-				if event.key<=122 and event.key>=97 or event.key<=57 and event.key>=48:
-					texts=texts+chr(event.key)
-					lenghtW+=15
-					x=x+15
-					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
-					label=myfont.render(chr(event.key),1,black)
-					screen.blit(label,(x,80))
-					
-				elif event.key == pygame.K_BACKSPACE:
-					texts=texts[:-1]
-					lenghtW-=15
-					x=x-15
-					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
-					label=myfont.render(texts,1,black)
-					screen.blit(background, (0,0))
-					screen.blit(text, (23,76))
-					screen.blit(label,(178, 80))
-		bJoin.update(screen, cursor1)
-		bNewGame.update(screen, cursor1)
-		bPlay.update(screen, cursor1)
-		cursor1.pos()
-		pygame.display.update()
-
-Windons()
-
-
-
-
-# ==========================================================================			
-# Function to create a window
-# ==========================================================================
-def window(x, y):									  # Creates window where program runs
-	pygame.init()									  
-	screen = pygame.display.set_mode((x,y))
-	screen.fill(black)
-	pygame.display.update()	   
-	return screen
 
 
 # ==========================================================================
@@ -260,7 +169,97 @@ def boardwindow():
 	while done:
 		for event in pygame.event.get(): # User did something
 			if event.type == pygame.QUIT: # If user clicked close
-				pygame.quit();sys.exit();
+				pygame.quit()
+                
+#=========*Fuction to create the presentation windons*==================
+#=======================================================================
+def Windons():
+	salirI=False
+	pygame.init()
+	screen = pygame.display.set_mode((1024,600))
+	background = pygame.image.load("fondo1.jpg").convert()
+	pygame.display.set_caption("PyPARTY")
+	pygame.mixer.music.load("song1.mp3")
+	screen.blit(background,(0,0))
+	imagen1=pygame.image.load("gif.png")
+	screen.blit(imagen1,(300,500))
+	pygame.mixer.music.play(2)
+	pygame.display.update()
+  
+	while salirI!= True:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				salirI=True
+			if event.type == pygame.KEYDOWN:
+				menu()
+	pygame.quit()
+
+#================*Fuction to create the menu windons*===================
+#=======================================================================
+def menu():
+	join0 = pygame.image.load("join0.png")				#Load pictures for buttons
+	join1 = pygame.image.load("join1.png")
+	newgame0 = pygame.image.load("new game0.png")
+	newgame1 = pygame.image.load("new game1.png")
+	play0 = pygame.image.load("play0.png")
+	play1 =  pygame.image.load("play1.png")
+	
+	cursor1=Mouse()										#Make a rectangle over the mouse
+	
+	bJoin = Buttons(join0, join1, 454, 403)				#Make the buttons
+	bPlay = Buttons(play0, play1, 759,403)
+	bNewGame = Buttons(newgame0, newgame1, 96, 403)
+
+	lenghtW=0											#Variables for text
+	texts = ''
+	x=178
+	screen=pygame.display.set_mode([1024,600])
+	text=pygame.image.load("text.png")
+	
+
+	salirII=False
+	pygame.init()
+	screen = pygame.display.set_mode((1024,600))
+	background = pygame.image.load("fondo2.jpg").convert()
+	pygame.display.set_caption("PyPARTY")
+	pygame.mixer.music.load("song2.mp3")
+	screen.blit(background,(0,0))
+	screen.blit(text, (23,76))
+	pygame.mixer.music.play(2)
+	pygame.display.update()
 
 
-boardwindow()
+	while salirII!= True:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:							#Event to exit
+				return pygame.quit()
+			elif event.type==pygame.KEYDOWN:											#Events for writing
+				if event.key<=122 and event.key>=97 or event.key<=57 and event.key>=48:
+					texts=texts+chr(event.key)
+					lenghtW+=15
+					x=x+15
+					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
+					label=myfont.render(chr(event.key),1,black)
+					screen.blit(label,(x,80))
+					
+				elif event.key == pygame.K_BACKSPACE:
+					texts=texts[:-1]
+					lenghtW-=15
+					x=x-15
+					myfont= pygame.font.SysFont("Bradley Hand ITC",20, 1, 1)
+					label=myfont.render(texts,1,black)
+					screen.blit(background, (0,0))
+					screen.blit(text, (23,76))
+					screen.blit(label,(178, 80))
+					
+			elif event.type==pygame.MOUSEBUTTONDOWN:
+				if cursor1.colliderect(bPlay):
+					return boardwindow()
+					
+		bJoin.update(screen, cursor1)
+		bNewGame.update(screen, cursor1)
+		bPlay.update(screen, cursor1)
+		cursor1.pos()
+		pygame.display.update()
+
+Windons()
